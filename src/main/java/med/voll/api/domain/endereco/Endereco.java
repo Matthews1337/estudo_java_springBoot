@@ -1,6 +1,8 @@
 package med.voll.api.domain.endereco;
 
 import jakarta.persistence.Embeddable;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +31,7 @@ public class Endereco {
         this.cidade = endereco.cidade();
         this.uf = endereco.uf();
     }
+
 
     public void atualizarInformacoes(DadosEndereco dados) {
         if(dados.logradouro() != null){

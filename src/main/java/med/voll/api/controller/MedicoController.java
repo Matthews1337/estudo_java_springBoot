@@ -1,6 +1,7 @@
 package med.voll.api.controller;
 
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import med.voll.api.domain.medico.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/medicos")
+@SecurityRequirement(name = "bearer-key")
 public class MedicoController {
     @Autowired
     private MedicoRepository repository;
@@ -38,7 +40,7 @@ public class MedicoController {
 
     // @PageableDefault(size=10, sort={"nome"}) -> serve para modificar os parametros padroes da page
     @GetMapping // CASO HAJA MUITOS DADOS NO BANCO DE DADOS DEVEMOS SEPARAR POR PAGINAS
-        public ResponseEntity<Page<DadosListagemMedico>> listar(@PageableDefault(size=10, sort={"nome"}) Pageable paginacao){
+    public ResponseEntity<Page<DadosListagemMedico>> listar(@PageableDefault(size=10, sort={"nome"}) Pageable paginacao){
         var page = repository.findAllByAtivoTrue(paginacao)
                 .map(DadosListagemMedico::new);
         return ResponseEntity.ok(page);
@@ -49,7 +51,6 @@ public class MedicoController {
     public ResponseEntity atualizar(@RequestBody @Valid DadosAtualizacaoMedico dados){
         var medico = repository.getReferenceById(dados.id());
         medico.atualizarInformacoes(dados);
-
         return ResponseEntity.ok(new DadosDetalhamentoMedico(medico));
     }
 
