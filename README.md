@@ -6,11 +6,13 @@ Este é um projeto em **Java + Spring Boot** que visa a construção de uma API 
 
 ## 🔍 Funcionalidades
 
-- Buscar médicos
+- Buscar médicos/pacientes
 - Buscar médico específico
-- Realizar soft delete
-- Atualizar médico
-- Cadastrar médico
+- Desativar médico
+- Atualizar médico/paciente
+- Cadastrar médico/paciente
+- Agendamento de consultas
+- Cancelamento de consultas
 
 
 ---
@@ -22,6 +24,8 @@ Este é um projeto em **Java + Spring Boot** que visa a construção de uma API 
 - Json Web Token
 - PostGresSQL
 - Flyway
+- Swagger
+- Lombok
 
 ---
 
